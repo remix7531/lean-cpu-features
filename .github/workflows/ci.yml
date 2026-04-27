@@ -1,0 +1,26 @@
+name: ci
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  build:
+    strategy:
+      fail-fast: false
+      matrix:
+        runner:
+          - ubuntu-latest      # x86_64 Linux
+          - ubuntu-24.04-arm   # aarch64 Linux
+          - macos-latest       # Apple Silicon (arm64 macOS)
+    runs-on: ${{ matrix.runner }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: leanprover/lean-action@v1
+      - name: Install qemu-user-static (Linux)
+        if: runner.os == 'Linux'
+        run: sudo apt-get update -qq && sudo apt-get install -y --no-install-recommends qemu-user-static
+      - run: make build
+      - run: make probe
+      - run: make test

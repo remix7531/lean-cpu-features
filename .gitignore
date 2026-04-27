@@ -1,0 +1,9 @@
+# Lake build artifacts
+.lake/
+build/
+lake-packages/
+
+# Nix dev shell
+.direnv/
+result
+result-*
