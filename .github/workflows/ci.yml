@@ -18,9 +18,9 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: leanprover/lean-action@v1
-      - name: Install qemu-user-static (Linux)
+      - name: Install qemu-user (Linux)
         if: runner.os == 'Linux'
-        run: sudo apt-get update -qq && sudo apt-get install -y --no-install-recommends qemu-user-static
+        run: sudo apt-get update -qq && sudo apt-get install -y --no-install-recommends qemu-user
       - run: make build
       - run: make probe
       - run: make test
