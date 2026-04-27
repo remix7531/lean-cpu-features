@@ -47,5 +47,5 @@ make clean
 ## Use as a dependency
 
 ```lean
-require «cpu-features» from git "https://github.com/remix7531/lean-cpu-features.git" @ "main"
+require «cpu-features» from git "https://github.com/remix7531/lean-cpu-features.git" @ "v0.1.0"
 ```
